@@ -14,6 +14,7 @@ conf = SparkConf().setMaster(config.get(env, 'executionMode'))\
 sc = SparkContext(conf=conf)
 
 orders = sc.textFile(config.get(env, 'base.dir') + "/orders.csv")
+print(orders.first())
 orderItems = sc.textFile(config.get(env, 'base.dir') + "/order_item.csv")
 
 ordersFiltered = orders.filter(lambda o: o.split(",")[3] in ("COMPLETE", "CLOSED"))
